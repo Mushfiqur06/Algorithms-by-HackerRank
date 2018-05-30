@@ -1,5 +1,15 @@
-let num = [2, 56, 83, 100, 8, 1, 47678565447];
-
-let result = num.sort((a, b) => a - b);
-
-result;
+function bigSorting(arr) {
+    const results = arr.sort((a,b) => {
+        if(a.length !== b.length){
+            return a.length - b.length;
+        }
+        else{
+            for(let i = 0; i < a.length; i++){
+                if(parseInt(a[i]) !== parseInt(b[i])){
+                    return parseInt(a[i]) - parseInt(b[i]);
+                }
+            }
+        }
+    });
+    return results;
+}
