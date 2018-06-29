@@ -1,32 +1,22 @@
-function quickSort(arr, low, high) {
-	// Complete this function
-	var len = arr.length;
-	if (low < high) {
-		pi = partition(arr, low, high);
-
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
-
-	return arr;
+function sort(nums) {
+    if ( nums.length === 0) return nums;
+    const left = [];
+    const right = [];
+    const pivot = nums[0];
+    for ( let i = 1; i < nums.length; i++ ) {
+        const num = nums[i];
+        if ( pivot > num ) {
+            left.push(num);
+        } else if ( pivot < num ) {
+            right.push(num);
+        }
+    }
+    const merge = sort(left).concat(pivot, sort(right));
+    if ( merge.length > 1 ) console.log(merge.join(' '));
+    return merge;
 }
 
-function partition(arr, low, high) {
-	var i = low - 1;
-	var pivot = arr[high];
-	var temp;
-	for (var j = low; j < high; j++) {
-		if (arr[j] < pivot) {
-			i++;
-			temp = arr[i];
-			arr[i] = arr[j];
-			arr[j] = temp;
-		}
-	}
-	temp = arr[i + 1];
-	arr[i + 1] = arr[high];
-	arr[high] = temp;
-	return i + 1;
+function processData(input) {
+    const nums = input.split('\n')[1].split(' ').map(Number);
+    sort(nums);
 }
-
-//console.log(quickSort([5, 8, 1, 3, 7, 9, 2], 0, 6));
